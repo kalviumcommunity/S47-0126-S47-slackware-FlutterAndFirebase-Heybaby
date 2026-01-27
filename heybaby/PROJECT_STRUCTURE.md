@@ -20,7 +20,8 @@ Understanding this structure is crucial because it allows developers to:
 | **`android/`** | Contains native Android configuration files, Gradle scripts (`build.gradle`), and manifest files (`AndroidManifest.xml`). Used for Android-specific settings. |
 | **`ios/`** | Contains native iOS configuration files and Xcode project settings. The `Info.plist` file here manages permissions and app metadata. |
 | **`test/`** | Stores automated tests. `widget_test.dart` is included by default to verify that UI components render and behave correctly. |
-| **`assets/`** | (Manually Created) A folder for static resources like images, fonts, and JSON files. These must be registered in `pubspec.yaml`. |
+
+| **`assets/`** |  (Manually Created) A folder for static resources like images, fonts, and JSON files. These must be registered in `pubspec.yaml`. |
 | **`pubspec.yaml`** | The project's configuration center. It manages dependencies (packages), asset registration, fonts, and app versioning. |
 | **`analysis_options.yaml`** | Configures the Dart analyzer, allowing you to customize linting rules for code quality. |
 | **`.gitignore`** | Specifies which files and directories should be ignored by Git (e.g., build artifacts, IDE settings). |
