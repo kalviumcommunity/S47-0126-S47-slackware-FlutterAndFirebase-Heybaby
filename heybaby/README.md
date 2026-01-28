@@ -1,73 +1,70 @@
-# heybaby
+Summary
 
-# HeyBaby - Flutter Project
+This PR demonstrates the practical difference between StatelessWidget and StatefulWidget in Flutter through a simple interactive demo app.
 
-**HeyBaby** is a new Flutter application designed to demonstrate a modular and scalable approach to building cross-platform apps. This project serves as a foundational template, implementing core Flutter concepts including widget composition, state management, and a clean folder architecture.
+The implementation includes:
 
-## Folder Structure Summary
+A StatelessWidget used for rendering static UI content (app title/header)
 
-A robust folder structure is essential for long-term project health. We have organized the codebase to separate responsibilities effectively.
+A StatefulWidget used for managing dynamic state and user interaction
 
-For a detailed breakdown of every folder and its specific role, please refer to our **[Project Structure Documentation](PROJECT_STRUCTURE.md)**.
+A clear separation between static and reactive parts of the UI
 
-### Quick Directory Overview:
-```text
-lib/
-├── models/    # Data definitions
-├── screens/   # Application pages
-├── services/  # Business logic
-├── widgets/   # Reusable components
-└── main.dart  # App entry point
-```
+Documentation and screenshots explaining how state changes affect the widget tree
 
-## Setup Instructions
+🧱 Implementation Overview
 
-Follow these steps to get the project running on your local machine.
+StatelessWidget
 
-1.  **Prerequisites:**
-    *   Install the [Flutter SDK](https://docs.flutter.dev/get-started/install).
-    *   Install an IDE (VS Code or Android Studio) with Flutter & Dart extensions.
+Displays a static header text that does not change during runtime
 
-2.  **Verify Installation:**
-    Run the following command to ensure your environment is ready:
-    ```bash
-    flutter doctor
-    ```
+Rebuilds only if its parent widget rebuilds
 
-3.  **Run the App:**
-    Navigate to the project directory and launch the app:
-    ```bash
-    cd heybaby
-    flutter run
-    ```
+StatefulWidget
 
-## Reflection
+Manages a mutable state (counter value)
 
-### Why is it important to understand the role of each folder?
-Understanding the folder structure is like knowing the blueprint of a building. It allows developers to:
-*   **Locate Code Quickly:** knowing that UI lives in `lib/screens` and logic in `lib/services` saves time.
-*   **Debug efficiently:** Issues with Android builds are isolated in the `android/` folder, while dart logic errors are found in `lib/`.
-*   **Manage Assets:** Correctly placing and registering images in `assets/` and `pubspec.yaml` ensures the app looks as intended.
+Uses setState() to update the UI in response to user interaction
 
-### How does a clean structure help when working in a team environment?
-*   **Reduces Conflicts:** When team members work on different features (e.g., one on a new Screen, another on a Service), they edit different files, minimizing merge conflicts.
-*   **Scalability:** As the app grows from 3 screens to 30, a structured `lib/` folder prevents chaos and makes the project manageable.
-*   **Consistency:** A defined structure enforces a standard way of working, ensuring that code Written by different developers looks and behaves similarly.
+Demonstrates Flutter’s reactive UI model
 
-## Screenshot
+The demo is implemented in:
 
-*(This is where a screenshot of the app running or the folder hierarchy in the IDE would be placed)*
+lib/screens/stateless_stateful_demo.dart
 
+🖼️ Screenshots
 
-## Getting Started
+📸 (Attach screenshots here)
 
-This project is a starting point for a Flutter application.
+Initial UI state (default counter value)
 
-A few resources to get you started if this is your first Flutter project:
+Updated UI after user interaction (incremented counter)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+💡 Reflection / Learnings
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+This exercise helped me clearly understand how Flutter separates UI description from state management.
+
+Key takeaways:
+
+Stateless widgets are ideal for static, reusable UI components
+
+Stateful widgets enable dynamic behavior by reacting to state changes
+
+setState() triggers a rebuild only for the affected widget subtree, making updates efficient
+
+Separating static and reactive UI leads to cleaner, more maintainable Flutter code
+
+This distinction is fundamental for building scalable Flutter applications.
+
+🎨 Design & Structure Decisions
+
+Kept the header as a StatelessWidget to emphasize immutability
+
+Isolated interactive logic inside a StatefulWidget to keep state localized
+
+Chose a simple counter interaction to clearly visualize state changes
+
+Placed the demo screen inside screens/ to follow standard Flutter project structure
+
+📌 Commit Message
+feat: implemented demo showing stateless and stateful widgets

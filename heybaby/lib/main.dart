@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'screens/stateless_stateful_demo.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         useMaterial3: true,
       ),
-      home: const WidgetTreeDemo(),
+      home: const StatelessStatefulDemoScreen(),
     );
   }
 }
