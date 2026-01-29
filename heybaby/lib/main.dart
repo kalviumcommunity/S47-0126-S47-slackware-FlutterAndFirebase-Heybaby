@@ -1,28 +1,57 @@
 import 'package:flutter/material.dart';
+import 'screens/home_screen.dart';
+import 'screens/second_screen.dart';
 import 'screens/stateless_stateful_demo.dart';
+import 'screens/caregiver_discovery_screen.dart';
+import 'screens/ratings_screen.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
-/// Root widget - Demonstrates MaterialApp structure
+/// Root widget - Demonstrates MaterialApp with Named Routes
 /// 
 /// Widget Tree:
 /// MyApp (StatelessWidget)
 /// └── MaterialApp
-///     └── WidgetTreeDemo (home)
+///     ├── routes (Named routes map)
+///     ├── initialRoute: '/'
+///     └── Multiple home screens accessible via navigation
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Widget Tree & Reactive UI Demo',
+      debugShowCheckedModeBanner: false,
+      title: 'HeyBaby - Childcare Discovery',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         useMaterial3: true,
       ),
-      home: const StatelessStatefulDemoScreen(),
+      // Define the initial route (home screen)
+      initialRoute: '/',
+      // Define all named routes for the app
+      routes: {
+        // Home screen - entry point
+        '/': (context) => const HomeScreen(),
+        
+        // Demo screen - Stateless & Stateful widgets
+        '/demo': (context) => const StatelessStatefulDemoScreen(),
+        
+        // Second screen - Basic navigation example
+        '/second': (context) => const SecondScreen(),
+        
+        // Caregiver Discovery - with arguments
+        '/discovery': (context) {
+          final message = ModalRoute.of(context)?.settings.arguments as String? ??
+              'Browse caregivers';
+          return CaregiverDiscoveryScreen(message: message);
+        },
+        
+        // Ratings Screen - with complex arguments
+        '/ratings': (context) => const RatingsScreen(),
+      },
     );
   }
 }
