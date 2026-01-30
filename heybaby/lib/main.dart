@@ -6,6 +6,7 @@ import 'screens/caregiver_discovery_screen.dart';
 import 'screens/ratings_screen.dart';
 
 void main() {
+  debugPrint('App started');
   runApp(const MyApp());
 }
 
