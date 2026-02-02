@@ -71,3 +71,48 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+## Scrollable Views Assignment
+
+This section demonstrates the use of ListView and GridView to create a scrollable 'HeyBaby Store' layout.
+
+### Implementation Details
+
+**Horizontal ListView for Categories:**
+`dart
+ListView.builder(
+  scrollDirection: Axis.horizontal,
+  itemCount: categories.length,
+  itemBuilder: (context, index) {
+      // ... returns a category card
+  },
+)
+`
+
+**Vertical GridView for Products:**
+`dart
+GridView.builder(
+  physics: const NeverScrollableScrollPhysics(),
+  shrinkWrap: true,
+  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+    crossAxisCount: 2,
+    // ... spacing settings
+  ),
+  itemCount: products.length,
+  itemBuilder: (context, index) {
+      // ... returns a product tile
+  },
+)
+`
+
+### Reflection
+
+**How does Flutter optimize scrolling for long lists?**
+Flutter uses a 'lazy rendering' mechanism. Widgets that are off-screen are destroyed, and only the visible ones (plus a small buffer) are built and rendered. This keeps memory usage low and performance high even with thousands of items.
+
+**Why is ListView.builder() more efficient than a static list?**
+A static ListView(children: [...]) builds all its children at once, even if they are not visible. ListView.builder() builds children on demand as the user scrolls. For large or infinite lists, uilder is essential to prevent performance issues and crashes.
+
+**How can GridView improve app aesthetics and data presentation?**
+GridView allows showcasing content in a matrix format, which is ideal for visual-heavy data like product catalogs, photo galleries, or dashboards. It maximizes screen real estate and allows users to compare multiple items side-by-side.
+

@@ -1,37 +1,40 @@
 import 'package:flutter/material.dart';
+import 'screens/scrollable_views.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const HeyBabyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class HeyBabyApp extends StatelessWidget {
+  const HeyBabyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Welcome App',
+      debugShowCheckedModeBanner: false,
+      title: 'HeyBaby',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink),
+        useMaterial3: true,
       ),
-      home: const WelcomeScreen(),
+      home: const HeyBabyHomePage(),
     );
   }
 }
 
-class WelcomeScreen extends StatefulWidget {
-  const WelcomeScreen({super.key});
+class HeyBabyHomePage extends StatefulWidget {
+  const HeyBabyHomePage({super.key});
 
   @override
-  State<WelcomeScreen> createState() => _WelcomeScreenState();
+  State<HeyBabyHomePage> createState() => _HeyBabyHomePageState();
 }
 
-class _WelcomeScreenState extends State<WelcomeScreen> {
-  bool _isActive = false;
+class _HeyBabyHomePageState extends State<HeyBabyHomePage> {
+  int _searchCount = 0;
 
-  void _toggleState() {
+  void _startSearch() {
     setState(() {
-      _isActive = !_isActive;
+      _searchCount++;
     });
   }
 
@@ -39,29 +42,42 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Welcome'),
+        title: const Text('HeyBaby'),
+        backgroundColor: Colors.pinkAccent,
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
+          children: [
             const Text(
-              'Welcome to Flutter!',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              'Find Safe & Verified Babysitters 👶',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center,
             ),
             const SizedBox(height: 20),
-            Icon(
-              Icons.flutter_dash,
-              size: 100,
-              color: _isActive ? Colors.blue : Colors.grey,
+            Text(
+              'Searches Started: $_searchCount',
+              style: Theme.of(context).textTheme.headlineMedium,
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 30),
             ElevatedButton(
-              onPressed: _toggleState,
-              child: Text(_isActive ? 'Deactivate' : 'Activate'),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ScrollableViews(),
+                  ),
+                );
+              },
+              child: const Text('Browse Babysitters'),
             ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _startSearch,
+        backgroundColor: Colors.pink,
+        child: const Icon(Icons.search),
       ),
     );
   }
