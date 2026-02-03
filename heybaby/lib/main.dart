@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'screens/home_screen.dart';
+import 'screens/second_screen.dart';
+import 'screens/stateless_stateful_demo.dart';
+import 'screens/caregiver_discovery_screen.dart';
+import 'screens/ratings_screen.dart';
+import 'screens/user_input_form.dart';
 import 'screens/scrollable_views.dart';
 
 void main() {
@@ -17,7 +23,32 @@ class HeyBabyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink),
         useMaterial3: true,
       ),
-      home: const HeyBabyHomePage(),
+      // Define the initial route (home screen)
+      initialRoute: '/',
+      // Define all named routes for the app
+      routes: {
+        // Home screen - entry point
+        '/': (context) => const HomeScreen(),
+        
+        // Demo screen - Stateless & Stateful widgets
+        '/demo': (context) => const StatelessStatefulDemoScreen(),
+        
+        // Second screen - Basic navigation example
+        '/second': (context) => const SecondScreen(),
+        
+        // Caregiver Discovery - with arguments
+        '/discovery': (context) {
+          final message = ModalRoute.of(context)?.settings.arguments as String? ??
+              'Browse caregivers';
+          return CaregiverDiscoveryScreen(message: message);
+        },
+        
+        // Ratings Screen - with complex arguments
+        '/ratings': (context) => const RatingsScreen(),
+        
+        // User Input Form - demonstrates form validation
+        '/form': (context) => UserInputForm(),
+      },
     );
   }
 }
