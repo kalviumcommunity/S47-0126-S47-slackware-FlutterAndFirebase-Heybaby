@@ -4,6 +4,7 @@ import 'screens/second_screen.dart';
 import 'screens/stateless_stateful_demo.dart';
 import 'screens/caregiver_discovery_screen.dart';
 import 'screens/ratings_screen.dart';
+import 'screens/user_input_form.dart';
 
 void main() {
   debugPrint('App started');
@@ -52,6 +53,9 @@ class MyApp extends StatelessWidget {
         
         // Ratings Screen - with complex arguments
         '/ratings': (context) => const RatingsScreen(),
+        
+        // User Input Form - demonstrates form validation
+        '/form': (context) => UserInputForm(),
       },
     );
   }
