@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import '../widgets/custom_button.dart';
+import '../widgets/info_card.dart';
+import '../widgets/like_button.dart';
 
 /// Home Screen - Main navigation hub for the app
 /// 
@@ -90,37 +93,28 @@ class HomeScreen extends StatelessWidget {
             const SizedBox(height: 12),
 
             // Stateless & Stateful Demo Button
-            ElevatedButton.icon(
+            CustomButton(
+              label: 'Widget Demo',
               onPressed: () {
                 Navigator.pushNamed(context, '/demo');
               },
-              icon: const Icon(Icons.widgets),
-              label: const Text('Widget Demo'),
-              style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                backgroundColor: Colors.blue,
-                foregroundColor: Colors.white,
-              ),
+              color: Colors.blue,
             ),
             const SizedBox(height: 12),
 
             // Second Screen Button
-            ElevatedButton.icon(
+            CustomButton(
+              label: 'Second Screen',
               onPressed: () {
                 Navigator.pushNamed(context, '/second');
               },
-              icon: const Icon(Icons.arrow_forward),
-              label: const Text('Second Screen'),
-              style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                backgroundColor: Colors.green,
-                foregroundColor: Colors.white,
-              ),
+              color: Colors.green,
             ),
             const SizedBox(height: 12),
 
             // Caregiver Discovery Button
-            ElevatedButton.icon(
+            CustomButton(
+              label: 'Find Caregivers',
               onPressed: () {
                 Navigator.pushNamed(
                   context,
@@ -128,18 +122,13 @@ class HomeScreen extends StatelessWidget {
                   arguments: 'Searching for experienced caregivers',
                 );
               },
-              icon: const Icon(Icons.person_search),
-              label: const Text('Find Caregivers'),
-              style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                backgroundColor: Colors.purple,
-                foregroundColor: Colors.white,
-              ),
+              color: Colors.purple,
             ),
             const SizedBox(height: 12),
 
             // Ratings Screen Button
-            ElevatedButton.icon(
+            CustomButton(
+              label: 'View Ratings',
               onPressed: () {
                 Navigator.pushNamed(
                   context,
@@ -147,13 +136,58 @@ class HomeScreen extends StatelessWidget {
                   arguments: {'caregiver': 'Sarah Johnson', 'rating': 4.8},
                 );
               },
-              icon: const Icon(Icons.star),
-              label: const Text('View Ratings'),
-              style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                backgroundColor: Colors.orange,
-                foregroundColor: Colors.white,
+              color: Colors.orange,
+            ),
+            const SizedBox(height: 12),
+
+            // User Input Form Button
+            CustomButton(
+              label: 'User Input Form',
+              onPressed: () {
+                Navigator.pushNamed(context, '/form');
+              },
+              color: Colors.teal,
+            ),
+            const SizedBox(height: 24),
+
+            // Info Section - Using Reusable InfoCard Widget
+            const Text(
+              'Quick Features',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
               ),
+            ),
+            const SizedBox(height: 12),
+            
+            InfoCard(
+              title: 'Verified Caregivers',
+              subtitle: 'Access background-checked caregivers',
+              icon: Icons.verified_user,
+              iconColor: Colors.green,
+              onTap: () {
+                Navigator.pushNamed(context, '/discovery');
+              },
+            ),
+            
+            InfoCard(
+              title: 'Top Ratings',
+              subtitle: 'View 5-star rated caregivers',
+              icon: Icons.star,
+              iconColor: Colors.amber,
+              onTap: () {
+                Navigator.pushNamed(context, '/ratings');
+              },
+            ),
+            
+            InfoCard(
+              title: 'Easy Forms',
+              subtitle: 'Simple and secure user input',
+              icon: Icons.edit,
+              iconColor: Colors.teal,
+              onTap: () {
+                Navigator.pushNamed(context, '/form');
+              },
             ),
             const SizedBox(height: 24),
 
