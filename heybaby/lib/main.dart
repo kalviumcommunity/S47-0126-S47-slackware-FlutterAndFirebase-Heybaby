@@ -7,6 +7,7 @@ import 'screens/ratings_screen.dart';
 import 'screens/user_input_form.dart';
 import 'screens/scrollable_views.dart';
 import 'screens/responsive_design_screen.dart';
+import 'screens/animations_transitions_demo.dart';
 
 void main() {
   runApp(const HeyBabyApp());
@@ -52,6 +53,9 @@ class HeyBabyApp extends StatelessWidget {
         
         // Responsive Design - demonstrates MediaQuery and LayoutBuilder
         '/responsive': (context) => const ResponsiveDesignScreen(),
+        
+        // Animations & Transitions - demonstrates implicit and explicit animations
+        '/animations': (context) => const AnimationsTransitionsDemo(),
       },
     );
   }
