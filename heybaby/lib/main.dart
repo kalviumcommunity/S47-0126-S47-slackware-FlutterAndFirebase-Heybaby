@@ -6,6 +6,7 @@ import 'screens/caregiver_discovery_screen.dart';
 import 'screens/ratings_screen.dart';
 import 'screens/user_input_form.dart';
 import 'screens/scrollable_views.dart';
+import 'screens/responsive_design_screen.dart';
 
 void main() {
   runApp(const HeyBabyApp());
@@ -48,6 +49,9 @@ class HeyBabyApp extends StatelessWidget {
         
         // User Input Form - demonstrates form validation
         '/form': (context) => UserInputForm(),
+        
+        // Responsive Design - demonstrates MediaQuery and LayoutBuilder
+        '/responsive': (context) => const ResponsiveDesignScreen(),
       },
     );
   }

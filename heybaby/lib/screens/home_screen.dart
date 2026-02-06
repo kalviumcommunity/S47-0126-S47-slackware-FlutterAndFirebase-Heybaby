@@ -148,6 +148,16 @@ class HomeScreen extends StatelessWidget {
               },
               color: Colors.teal,
             ),
+            const SizedBox(height: 12),
+
+            // Responsive Design Button
+            CustomButton(
+              label: 'Responsive Design',
+              onPressed: () {
+                Navigator.pushNamed(context, '/responsive');
+              },
+              color: Colors.deepPurple,
+            ),
             const SizedBox(height: 24),
 
             // Info Section - Using Reusable InfoCard Widget
