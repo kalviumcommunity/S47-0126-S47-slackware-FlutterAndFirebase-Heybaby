@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'screens/scrollable_views.dart';
+import 'screens/responsive_design_screen.dart';
+import 'screens/animations_transitions_demo.dart';
 import 'screens/state_management_demo.dart';
 import 'screens/assets_demo.dart';
 
@@ -47,6 +49,9 @@ class HeyBabyApp extends StatelessWidget {
         
         // Responsive Design - demonstrates MediaQuery and LayoutBuilder
         '/responsive': (context) => const ResponsiveDesignScreen(),
+        
+        // Animations & Transitions - demonstrates implicit and explicit animations
+        '/animations': (context) => const AnimationsTransitionsDemo(),
       },
     );
   }

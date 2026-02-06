@@ -158,6 +158,16 @@ class HomeScreen extends StatelessWidget {
               },
               color: Colors.deepPurple,
             ),
+            const SizedBox(height: 12),
+
+            // Animations & Transitions Button
+            CustomButton(
+              label: 'Animations Demo',
+              onPressed: () {
+                Navigator.pushNamed(context, '/animations');
+              },
+              color: Colors.indigo,
+            ),
             const SizedBox(height: 24),
 
             // Info Section - Using Reusable InfoCard Widget
