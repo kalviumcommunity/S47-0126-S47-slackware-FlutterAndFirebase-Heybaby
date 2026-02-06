@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'screens/scrollable_views.dart';
+import 'screens/state_management_demo.dart';
 
 void main() {
   runApp(const HeyBabyApp());
@@ -45,193 +46,54 @@ class _HeyBabyHomePageState extends State<HeyBabyHomePage> {
         title: const Text('HeyBaby'),
         backgroundColor: Colors.pinkAccent,
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text(
-              'Find Safe & Verified Babysitters 👶',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 20),
-            Text(
-              'Searches Started: $_searchCount',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-            const SizedBox(height: 30),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const ScrollableViews(),
+      body: SingleChildScrollView(
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const SizedBox(height: 20),
+                const Text(
+                  'Find Safe & Verified Babysitters ',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 20),
+                Text(
+                  'Searches Started: ',
+                  style: Theme.of(context).textTheme.headlineMedium,
+                ),
+                const SizedBox(height: 30),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const ScrollableViews(),
+                      ),
+                    );
+                  },
+                  child: const Text('Browse Babysitters'),
+                ),
+                const SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const StateManagementDemo(),
+                      ),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blueAccent,
                   ),
-                );
-              },
-              child: const Text('Browse Babysitters'),
+                  child: const Text('State Management Demo'),
+                ),
+              ],
             ),
           ),
-          const SizedBox(height: 16),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ElevatedButton.icon(
-                onPressed: onDecrement,
-                icon: const Icon(Icons.remove),
-                label: const Text('Decrease'),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.red.shade400,
-                  foregroundColor: Colors.white,
-                ),
-              ),
-              const SizedBox(width: 16),
-              ElevatedButton.icon(
-                onPressed: onIncrement,
-                icon: const Icon(Icons.add),
-                label: const Text('Increase'),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green.shade400,
-                  foregroundColor: Colors.white,
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-/// WidgetVisibilityToggle - Demonstrates conditional rendering
-/// 
-/// Widget Tree:
-/// WidgetVisibilityToggle
-/// └── Center
-///     └── ElevatedButton
-class WidgetVisibilityToggle extends StatelessWidget {
-  final bool isVisible;
-  final VoidCallback onToggle;
-
-  const WidgetVisibilityToggle({
-    super.key,
-    required this.isVisible,
-    required this.onToggle,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: ElevatedButton.icon(
-        onPressed: onToggle,
-        icon: Icon(isVisible ? Icons.visibility_off : Icons.visibility),
-        label: Text(isVisible ? 'Hide Widget' : 'Show Hidden Widget'),
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.orange.shade400,
-          foregroundColor: Colors.white,
-        ),
-      ),
-    );
-  }
-}
-
-/// WidgetTreeStructure - Displays the widget hierarchy as documentation
-/// 
-/// Widget Tree:
-/// WidgetTreeStructure
-/// └── Padding
-///     └── Card
-///         └── Padding
-///             └── Column
-///                 └── Text (multiple)
-class WidgetTreeStructure extends StatelessWidget {
-  const WidgetTreeStructure({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Card(
-        elevation: 4,
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                'Widget Tree Structure:',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 12),
-              _buildTreeText('WidgetTreeDemo (StatefulWidget)'),
-              _buildTreeText('└── Scaffold', indent: 1),
-              _buildTreeText('├── AppBar', indent: 2),
-              _buildTreeText('└── Body (SingleChildScrollView)', indent: 2),
-              _buildTreeText('└── Column', indent: 3),
-              _buildTreeText('├── ProfileCard (Custom)', indent: 4),
-              _buildTreeText('├── InteractiveCounter (Custom)', indent: 4),
-              _buildTreeText('├── ColorToggleButton', indent: 4),
-              _buildTreeText('├── WidgetVisibilityToggle (Custom)', indent: 4),
-              _buildTreeText('├── ConditionalWidget (if _showHiddenWidget)', indent: 4),
-              _buildTreeText('└── WidgetTreeStructure (Custom)', indent: 4),
-              const SizedBox(height: 12),
-              const Divider(),
-              const SizedBox(height: 12),
-              const Text(
-                'How the Reactive Model Works:',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 8),
-              _buildReferenceText(
-                '1. When you tap a button, it calls setState()',
-              ),
-              _buildReferenceText(
-                '2. setState() updates state variables (_counter, _bgColor, etc.)',
-              ),
-              _buildReferenceText(
-                '3. The framework automatically rebuilds the widget tree',
-              ),
-              _buildReferenceText(
-                '4. Only affected widgets are re-rendered (optimization)',
-              ),
-              _buildReferenceText(
-                '5. The UI reflects the new state instantly',
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildTreeText(String text, {int indent = 0}) {
-    return Padding(
-      padding: EdgeInsets.only(left: indent * 12.0),
-      child: Text(
-        text,
-        style: const TextStyle(
-          fontFamily: 'monospace',
-          fontSize: 12,
-          color: Colors.black87,
-        ),
-      ),
-    );
-  }
-
-  Widget _buildReferenceText(String text) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4.0),
-      child: Text(
-        text,
-        style: TextStyle(
-          fontSize: 12,
-          color: Colors.grey.shade700,
         ),
       ),
       floatingActionButton: FloatingActionButton(
