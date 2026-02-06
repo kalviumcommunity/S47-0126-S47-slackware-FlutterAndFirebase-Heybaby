@@ -2,6 +2,7 @@
 import 'screens/scrollable_views.dart';
 import 'screens/state_management_demo.dart';
 import 'screens/assets_demo.dart';
+import 'screens/responsive_design_demo.dart';
 
 void main() {
   runApp(const HeyBabyApp());
@@ -98,7 +99,7 @@ class _HeyBabyHomePageState extends State<HeyBabyHomePage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const AssetsDemoScreen(),
+                        builder: (context) => AssetsDemoScreen(),
                       ),
                     );
                   },
@@ -106,6 +107,21 @@ class _HeyBabyHomePageState extends State<HeyBabyHomePage> {
                     backgroundColor: Colors.green,
                   ),
                   child: const Text('Assets & Icons Demo'),
+                ),
+                const SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ResponsiveDesignDemo(),
+                      ),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.orange.shade600,
+                  ),
+                  child: const Text('Responsive Design Demo'),
                 ),
               ],
             ),
