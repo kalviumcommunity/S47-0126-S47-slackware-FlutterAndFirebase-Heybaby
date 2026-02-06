@@ -1,6 +1,7 @@
 ﻿import 'package:flutter/material.dart';
 import 'screens/scrollable_views.dart';
 import 'screens/state_management_demo.dart';
+import 'screens/assets_demo.dart';
 
 void main() {
   runApp(const HeyBabyApp());
@@ -90,6 +91,21 @@ class _HeyBabyHomePageState extends State<HeyBabyHomePage> {
                     backgroundColor: Colors.blueAccent,
                   ),
                   child: const Text('State Management Demo'),
+                ),
+                const SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const AssetsDemoScreen(),
+                      ),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.green,
+                  ),
+                  child: const Text('Assets & Icons Demo'),
                 ),
               ],
             ),
