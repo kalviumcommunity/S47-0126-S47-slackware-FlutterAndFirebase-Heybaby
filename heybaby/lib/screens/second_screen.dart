@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../widgets/custom_button.dart';
+import '../widgets/like_button.dart';
 
 /// Second Screen - Demonstrates basic navigation
 /// 
@@ -153,32 +155,48 @@ class SecondScreen extends StatelessWidget {
             ),
             const SizedBox(height: 24),
 
-            // Back Button
-            ElevatedButton.icon(
+            // Back Button - Using CustomButton Widget
+            CustomButton(
+              label: 'Back to Home',
               onPressed: () {
                 Navigator.pop(context);
               },
-              icon: const Icon(Icons.arrow_back),
-              label: const Text('Back to Home'),
-              style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                backgroundColor: Colors.green,
-                foregroundColor: Colors.white,
-              ),
+              color: Colors.green,
             ),
             const SizedBox(height: 12),
 
-            // Alternative: Pop until Home
-            OutlinedButton.icon(
+            // Alternative: Pop until Home - Using CustomButton
+            CustomButton(
+              label: 'Pop Until Home',
               onPressed: () {
                 Navigator.popUntil(context, ModalRoute.withName('/'));
               },
-              icon: const Icon(Icons.home),
-              label: const Text('Pop Until Home'),
-              style: OutlinedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                foregroundColor: Colors.green,
-                side: const BorderSide(color: Colors.green),
+              color: Colors.teal,
+            ),
+            const SizedBox(height: 12),
+
+            // Demo Like Button
+            Center(
+              child: Column(
+                children: [
+                  const Text(
+                    'Try the Like Button Widget:',
+                    style: TextStyle(fontWeight: FontWeight.w600),
+                  ),
+                  const SizedBox(height: 8),
+                  LikeButton(
+                    onLikeChanged: (isLiked) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            isLiked ? '❤️ Liked!' : '👎 Unliked',
+                          ),
+                          duration: const Duration(milliseconds: 500),
+                        ),
+                      );
+                    },
+                  ),
+                ],
               ),
             ),
             const SizedBox(height: 24),
