@@ -2,32 +2,47 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'home_screen.dart';
+import 'splash_screen.dart';
 
-/// AuthGate: Routes users to HomeScreen if logged in, AuthScreen if not
-/// Uses StreamBuilder to listen to auth state changes in real-time
+/// AuthGate: Routes users based on Firebase authentication state
+/// 
+/// This widget listens to authentication state changes and automatically
+/// routes users to the appropriate screen:
+/// - SplashScreen: While Firebase checks for persistent session
+/// - HomeScreen: If user is logged in (has valid session)
+/// - AuthScreen: If user is not logged in
+///
+/// This is the root widget that handles all session persistence logic.
 class AuthGate extends StatelessWidget {
   const AuthGate({super.key});
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<User?>(
+      // Listen to Firebase auth state changes in real-time
+      // This stream emits whenever:
+      // - App starts (checks for persistent session)
+      // - User logs in
+      // - User logs out
+      // - Session becomes invalid
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (context, snapshot) {
-        // Show loading while checking auth state
+        // LOADING STATE: Firebase is checking for persistent session
+        // This happens when:
+        // 1. App first opens (checking device storage for valid tokens)
+        // 2. Network connection is being established
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Scaffold(
-            body: Center(
-              child: CircularProgressIndicator(),
-            ),
-          );
+          return const SplashScreen();
         }
 
-        // If user is logged in, show HomeScreen
+        // LOGGED IN STATE: User has valid session
+        // If snapshot.hasData, it means FirebaseAuth found a valid User
         if (snapshot.hasData) {
           return const HomeScreen();
         }
 
-        // Otherwise show authentication screen
+        // LOGGED OUT STATE: No valid user session
+        // Show authentication screen for login/signup
         return const AuthScreen();
       },
     );
