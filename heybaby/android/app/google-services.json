@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "968667148394",
+    "project_id": "firebaby-ee24b",
+    "storage_bucket": "firebaby-ee24b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:968667148394:android:d5420f305f5cd4a1781a13",
+        "android_client_info": {
+          "package_name": "com.example.heybaby"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA62-1SDeAgmWA6zd8Cu5295jpJUQDw4Ew"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

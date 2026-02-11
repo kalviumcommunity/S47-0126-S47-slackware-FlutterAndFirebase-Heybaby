@@ -1,11 +1,27 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'firebase_options.dart';
+import 'screens/home_screen.dart';
+import 'screens/second_screen.dart';
+import 'screens/stateless_stateful_demo.dart';
+import 'screens/caregiver_discovery_screen.dart';
+import 'screens/ratings_screen.dart';
+import 'screens/user_input_form.dart';
+import 'screens/scrollable_views.dart';
+import 'screens/responsive_design_screen.dart';
+import 'screens/animations_transitions_demo.dart';
+import 'screens/auth_gate.dart';
 import 'screens/scrollable_views.dart';
 import 'screens/responsive_design_screen.dart';
 import 'screens/animations_transitions_demo.dart';
 import 'screens/state_management_demo.dart';
 import 'screens/assets_demo.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const HeyBabyApp());
 }
 
@@ -21,8 +37,7 @@ class HeyBabyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink),
         useMaterial3: true,
       ),
-      // Define the initial route (home screen)
-      initialRoute: '/',
+      home: const AuthGate(),
       // Define all named routes for the app
       routes: {
         // Home screen - entry point
