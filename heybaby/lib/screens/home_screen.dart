@@ -1,22 +1,26 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/info_card.dart';
 import '../widgets/like_button.dart';
 
-/// Home Screen - Main navigation hub for the app
+/// Home Screen - Main navigation hub for authenticated users
 /// 
-/// This screen serves as the entry point and provides navigation
+/// This screen serves as the entry point after login and provides navigation
 /// to different sections of the app using named routes.
 /// 
 /// Demonstrates:
 /// - Navigator.pushNamed() for navigation
 /// - Navigation with arguments
-/// - UI layout with multiple action buttons
+/// - Logout functionality with FirebaseAuth
+/// - Displaying current user information
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('HeyBaby - Childcare Discovery'),
@@ -25,19 +29,60 @@ class HomeScreen extends StatelessWidget {
         flexibleSpace: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              colors: [Colors.blue.shade700, Colors.blue.shade900],
+              colors: [Colors.pink.shade700, Colors.pink.shade900],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
           ),
         ),
+        actions: [
+          // User profile button
+          Padding(
+            padding: const EdgeInsets.only(right: 16),
+            child: Center(
+              child: Tooltip(
+                message: user?.email ?? 'User',
+                child: PopupMenuButton<String>(
+                  onSelected: (value) {
+                    if (value == 'logout') {
+                      _showLogoutConfirmation(context);
+                    }
+                  },
+                  itemBuilder: (BuildContext context) => [
+                    PopupMenuItem<String>(
+                      value: 'profile',
+                      child: Row(
+                        children: [
+                          const Icon(Icons.account_circle),
+                          const SizedBox(width: 8),
+                          Text(user?.email ?? 'Profile'),
+                        ],
+                      ),
+                    ),
+                    const PopupMenuDivider(),
+                    const PopupMenuItem<String>(
+                      value: 'logout',
+                      child: Row(
+                        children: [
+                          Icon(Icons.logout, color: Colors.red),
+                          SizedBox(width: 8),
+                          Text('Logout', style: TextStyle(color: Colors.red)),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // Welcome Header
+            // Welcome Header with user info
             Card(
               elevation: 4,
               shape: RoundedRectangleBorder(
@@ -46,7 +91,7 @@ class HomeScreen extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
-                    colors: [Colors.blue.shade50, Colors.blue.shade100],
+                    colors: [Colors.pink.shade50, Colors.pink.shade100],
                   ),
                   borderRadius: BorderRadius.circular(12),
                 ),
@@ -56,7 +101,7 @@ class HomeScreen extends StatelessWidget {
                     const Icon(
                       Icons.home,
                       size: 48,
-                      color: Colors.blue,
+                      color: Colors.pink,
                     ),
                     const SizedBox(height: 16),
                     const Text(
@@ -64,7 +109,15 @@ class HomeScreen extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
-                        color: Colors.blue,
+                        color: Colors.pink,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      user?.email ?? 'User',
+                      style: const TextStyle(
+                        fontSize: 14,
+                        color: Colors.grey,
                       ),
                     ),
                     const SizedBox(height: 8),
@@ -260,6 +313,33 @@ class HomeScreen extends StatelessWidget {
             const SizedBox(height: 24),
           ],
         ),
+      ),
+    );
+  }
+
+  /// Show logout confirmation dialog
+  static void _showLogoutConfirmation(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Logout'),
+        content: const Text('Are you sure you want to logout?'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+              FirebaseAuth.instance.signOut();
+            },
+            child: const Text(
+              'Logout',
+              style: TextStyle(color: Colors.red),
+            ),
+          ),
+        ],
       ),
     );
   }
