@@ -154,9 +154,11 @@ class _AssetsDemoScreenState extends State<AssetsDemoScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            color: Colors.black.withOpacity(0.08),
+            decoration: BoxDecoration(
+              color: Colors.black.withOpacity(0.08),
+              borderRadius: BorderRadius.circular(6),
+            ),
             padding: const EdgeInsets.all(12),
-            borderRadius: BorderRadius.circular(6),
             child: const Text(
               '''assets/
 ├── images/
@@ -244,9 +246,11 @@ class _AssetsDemoScreenState extends State<AssetsDemoScreen> {
           ),
           const SizedBox(height: 12),
           Container(
-            color: Colors.blue.withOpacity(0.1),
+            decoration: BoxDecoration(
+              color: Colors.blue.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(4),
+            ),
             padding: const EdgeInsets.all(8),
-            borderRadius: BorderRadius.circular(4),
             child: const Text(
               'Tip: Use Icons.* for Material Design icons. They\'re instantly available without registration!',
               style: TextStyle(fontSize: 11, color: Colors.blue),
@@ -320,9 +324,11 @@ class _AssetsDemoScreenState extends State<AssetsDemoScreen> {
           ),
           const SizedBox(height: 12),
           Container(
-            color: Colors.orange.withOpacity(0.1),
+            decoration: BoxDecoration(
+              color: Colors.orange.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(4),
+            ),
             padding: const EdgeInsets.all(8),
-            borderRadius: BorderRadius.circular(4),
             child: const Text(
               'Tip: Import "package:flutter/cupertino.dart" to use CupertinoIcons',
               style: TextStyle(fontSize: 11, color: Colors.orange),
@@ -567,9 +573,11 @@ Image.asset(
           ),
           const SizedBox(height: 12),
           Container(
-            color: Colors.black.withOpacity(0.08),
+            decoration: BoxDecoration(
+              color: Colors.black.withOpacity(0.08),
+              borderRadius: BorderRadius.circular(6),
+            ),
             padding: const EdgeInsets.all(12),
-            borderRadius: BorderRadius.circular(6),
             child: const Text(
               '''flutter:
   uses-material-design: true
@@ -645,9 +653,11 @@ Image.asset(
         ),
         const SizedBox(height: 6),
         Container(
-          color: Colors.black.withOpacity(0.08),
+          decoration: BoxDecoration(
+            color: Colors.black.withOpacity(0.08),
+            borderRadius: BorderRadius.circular(6),
+          ),
           padding: const EdgeInsets.all(10),
-          borderRadius: BorderRadius.circular(6),
           child: Text(
             code,
             style: const TextStyle(
