@@ -1,6 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'firebase_options.dart';
 import 'screens/home_screen.dart';
 import 'screens/second_screen.dart';
 import 'screens/stateless_stateful_demo.dart';
@@ -17,12 +16,10 @@ import 'screens/animations_transitions_demo.dart';
 import 'screens/state_management_demo.dart';
 import 'screens/assets_demo.dart';
 
-Future<void> main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-  runApp(const HeyBabyApp());
+  await Firebase.initializeApp();   // NO options here
+runApp(const HeyBabyApp());
 }
 
 class HeyBabyApp extends StatelessWidget {
@@ -40,8 +37,8 @@ class HeyBabyApp extends StatelessWidget {
       home: const AuthGate(),
       // Define all named routes for the app
       routes: {
-        // Home screen - entry point
-        '/': (context) => const HomeScreen(),
+        // Home screen - navigable via named route
+        '/home': (context) => const HomeScreen(),
         
         // Demo screen - Stateless & Stateful widgets
         '/demo': (context) => const StatelessStatefulDemoScreen(),

@@ -322,9 +322,11 @@ class _StateManagementDemoState extends State<StateManagementDemo> {
                       ),
                       const SizedBox(height: 12),
                       Container(
-                        color: Colors.black.withOpacity(0.1),
+                        decoration: BoxDecoration(
+                          color: Colors.black.withOpacity(0.1),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
                         padding: const EdgeInsets.all(12),
-                        borderRadius: BorderRadius.circular(8),
                         child: Text(
                           '''void _incrementCounter() {
   setState(() {
